@@ -14,7 +14,7 @@ public record ScheduleRequest(
 
     private static void validateDuplicateWorker(List<String> workers) {
         if (workers.size() != workers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("[ERROR] 하나의 순번에는 각 근무자가 1회만 편성되어야 합니다.");
         }
     }
 }

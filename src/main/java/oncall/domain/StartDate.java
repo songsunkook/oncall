@@ -13,7 +13,7 @@ public class StartDate {
 
     private void validateMonth(int month) {
         if (month < 1 || month > 12) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 월(month)입니다.");
         }
     }
 

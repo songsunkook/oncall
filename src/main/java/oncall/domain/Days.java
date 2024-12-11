@@ -16,7 +16,7 @@ public enum Days {
         return Arrays.stream(values())
             .filter(days -> days.name().equals(dayOfTheWeek))
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] "));
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 올바르지 않은 요일입니다."));
     }
 
     public Days next() {

@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Company {
 
-    private final WorkDay weekday = new WorkDay();
-    private final WorkDay holiday = new WorkDay();
+    private WorkDay weekday;
+    private WorkDay holiday;
 
     public void assignWeekday(List<String> workers) {
-        weekday.assign(workers);
+        weekday = new WorkDay(workers);
     }
 
     public void assignHoliday(List<String> workers) {
-        holiday.assign(workers);
+        holiday = new WorkDay(workers);
     }
 
     public String nextWorker(int month, int day, Days days, String beforeWorker) {

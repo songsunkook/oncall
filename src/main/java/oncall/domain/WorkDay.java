@@ -5,24 +5,29 @@ import java.util.List;
 
 public class WorkDay {
 
-    private final List<String> workers = new ArrayList<>();
     private int cursor = 0;
     private String specialNextWorker = null;
+    private final List<String> workers = new ArrayList<>();
 
-    public void assign(List<String> workers) {
+    public WorkDay(List<String> workers) {
+        validateNumberOfPeople(workers);
+        validateNickname(workers);
         this.workers.addAll(workers);
     }
 
-    public String peek() {
-        return workers.get(cursor);
+    private void validateNumberOfPeople(List<String> workers) {
+        if (workers.size() > 35) {
+            throw new IllegalArgumentException("[ERROR] 근무자 수는 최대 35명이어야 합니다.");
+        }
+        if (workers.size() < 5) {
+            throw new IllegalArgumentException("[ERROR] 근무자 수는 최소 5명 이상이어야 합니다.");
+        }
     }
 
-    public void swap() {
-        int next = getNextIdx();
-        String i = workers.get(cursor);
-        String j = workers.get(next);
-        workers.set(cursor, j);
-        workers.set(next, i);
+    private void validateNickname(List<String> workers) {
+        if (workers.stream().anyMatch(name -> name.length() > 5)) {
+            throw new IllegalArgumentException("[ERROR] 근무자 닉네임은 최대 5글자여야 합니다.");
+        }
     }
 
     private int getNextIdx() {
