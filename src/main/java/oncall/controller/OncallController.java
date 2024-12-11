@@ -15,7 +15,7 @@ public class OncallController {
     }
 
     private void inputMonthAndDays() {
-        OutputView.inputMonthAndDays();
+        OutputView.inputStartDate();
         oncallService.setUp(InputView.startDate());
     }
 
