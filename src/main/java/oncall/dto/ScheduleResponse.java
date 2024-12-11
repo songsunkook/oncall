@@ -2,8 +2,8 @@ package oncall.dto;
 
 import java.util.List;
 
-import oncall.domain.Days;
-import oncall.domain.Schedule;
+import oncall.domain.company.Schedule;
+import oncall.domain.day.Days;
 
 public record ScheduleResponse(
     int month,
@@ -28,7 +28,7 @@ public record ScheduleResponse(
     ) {
 
         private static InnerDays from(Schedule.InnerDays innerDays) {
-            return new InnerDays(innerDays.day(), innerDays.dayOfWeek(), innerDays.worker());
+            return new InnerDays(innerDays.day(), innerDays.dayOfWeek(), innerDays.worker().getName());
         }
     }
 }

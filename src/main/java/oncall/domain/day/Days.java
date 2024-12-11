@@ -1,4 +1,4 @@
-package oncall.domain;
+package oncall.domain.day;
 
 import static oncall.exception.ExceptionMessage.INVALID_DAY_OF_WEEK;
 

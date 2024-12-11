@@ -1,6 +1,11 @@
-package oncall.domain;
+package oncall.domain.company;
 
 import java.util.List;
+
+import oncall.domain.day.Days;
+import oncall.domain.day.SpecialHoliday;
+import oncall.domain.work.WorkDay;
+import oncall.domain.work.Worker;
 
 public class Company {
 
@@ -15,7 +20,7 @@ public class Company {
         holiday = new WorkDay(workers);
     }
 
-    public String nextWorker(int month, int day, Days days, String beforeWorker) {
+    public Worker nextWorker(int month, int day, Days days, Worker beforeWorker) {
         if (SpecialHoliday.isHoliday(month, day) || days.isHoliday()) {
             return holiday.pop(beforeWorker);
         }

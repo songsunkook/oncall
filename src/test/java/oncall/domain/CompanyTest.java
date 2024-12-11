@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import oncall.domain.company.Calendar;
+import oncall.domain.company.Company;
+import oncall.domain.company.Schedule;
+
 class CompanyTest {
 
     @Test
@@ -23,12 +27,12 @@ class CompanyTest {
         Calendar calendar = new Calendar();
         calendar.setUp(company);
         Schedule schedule = calendar.scheduleWith(1, "월");
-        assertThat(schedule.getWorker(1)).isEqualTo("준팍");
-        assertThat(schedule.getWorker(2)).isEqualTo("도밥");
-        assertThat(schedule.getWorker(3)).isEqualTo("준팍");
-        assertThat(schedule.getWorker(4)).isEqualTo("고니");
-        assertThat(schedule.getWorker(5)).isEqualTo("수아");
-        assertThat(schedule.getWorker(6)).isEqualTo("고니");
-        assertThat(schedule.getWorker(7)).isEqualTo("도밥");
+        assertThat(schedule.getWorker(1).getName()).isEqualTo("준팍");
+        assertThat(schedule.getWorker(2).getName()).isEqualTo("도밥");
+        assertThat(schedule.getWorker(3).getName()).isEqualTo("준팍");
+        assertThat(schedule.getWorker(4).getName()).isEqualTo("고니");
+        assertThat(schedule.getWorker(5).getName()).isEqualTo("수아");
+        assertThat(schedule.getWorker(6).getName()).isEqualTo("고니");
+        assertThat(schedule.getWorker(7).getName()).isEqualTo("도밥");
     }
 }

@@ -2,7 +2,7 @@ package oncall.view;
 
 import static oncall.view.OutputMessage.*;
 
-import oncall.domain.SpecialHoliday;
+import oncall.domain.day.SpecialHoliday;
 import oncall.dto.ScheduleResponse;
 
 public class OutputView {

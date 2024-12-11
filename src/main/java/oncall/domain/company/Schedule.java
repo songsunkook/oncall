@@ -1,7 +1,10 @@
-package oncall.domain;
+package oncall.domain.company;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import oncall.domain.day.Days;
+import oncall.domain.work.Worker;
 
 public class Schedule {
 
@@ -14,11 +17,11 @@ public class Schedule {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public void add(int day, Days dayOfWeek, String worker) {
+    public void add(int day, Days dayOfWeek, Worker worker) {
         days.add(new InnerDays(day, dayOfWeek, worker));
     }
 
-    public String getWorker(int day) {
+    public Worker getWorker(int day) {
         return days.get(day - 1).worker;
     }
 
@@ -37,7 +40,7 @@ public class Schedule {
     public record InnerDays(
         int day,
         Days dayOfWeek,
-        String worker
+        Worker worker
     ) {
 
     }

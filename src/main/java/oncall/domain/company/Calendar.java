@@ -1,6 +1,9 @@
-package oncall.domain;
+package oncall.domain.company;
 
 import java.util.List;
+
+import oncall.domain.day.Days;
+import oncall.domain.work.Worker;
 
 public class Calendar {
 
@@ -20,9 +23,9 @@ public class Calendar {
         Schedule schedule = new Schedule(month, dayOfTheWeekParam);
         Days dayOfWeek = Days.from(dayOfTheWeekParam);
 
-        String beforeWorker = null;
+        Worker beforeWorker = null;
         for (int i = 1; i <= lastDay; i++) {
-            String result = company.nextWorker(month, i, dayOfWeek, beforeWorker);
+            Worker result = company.nextWorker(month, i, dayOfWeek, beforeWorker);
             schedule.add(i, dayOfWeek, result);
             beforeWorker = result;
             dayOfWeek = dayOfWeek.next();
