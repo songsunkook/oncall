@@ -8,6 +8,14 @@ public class WorkDay {
     private final List<String> workers = new ArrayList<>();
 
     public void assign(String workers) {
-        this.workers.addAll(List.of(workers.split(",")));
+        List<String> split = List.of(workers.split(","));
+        validateDuplicateWorker(split);
+        this.workers.addAll(split);
+    }
+
+    private void validateDuplicateWorker(List<String> workers) {
+        if (workers.size() != workers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] ");
+        }
     }
 }

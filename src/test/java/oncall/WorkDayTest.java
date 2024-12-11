@@ -1,5 +1,7 @@
 package oncall;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
 import org.junit.jupiter.api.Test;
 
 class WorkDayTest {
@@ -11,9 +13,9 @@ class WorkDayTest {
     }
 
     @Test
-    void 회사에서는_평일과_휴일_순번을_다르게_운영한다() {
-        Company company = new Company();
-        company.assignWeekday("준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리");
-        company.assignHoliday("수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니");
+    void 순번에_특정_인원이_두번이상_편성된_경우_예외를_반환한다() {
+        WorkDay workDay = new WorkDay();
+        assertThatThrownBy(() -> workDay.assign("준팍,도밥,고니,글로,글로,글로"))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
