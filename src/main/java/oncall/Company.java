@@ -12,4 +12,11 @@ public class Company {
     public void assignHoliday(String workers) {
         holiday.assign(workers);
     }
+
+    public String nextWorker(int month, int day, Days days, String beforeWorker) {
+        if (SpecialHoliday.isHoliday(month, day) || days.isHoliday()) {
+            return holiday.pop(beforeWorker);
+        }
+        return weekday.pop(beforeWorker);
+    }
 }
