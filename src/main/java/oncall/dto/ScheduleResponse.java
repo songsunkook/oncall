@@ -3,7 +3,9 @@ package oncall.dto;
 import java.util.List;
 
 import oncall.domain.company.Schedule;
-import oncall.domain.day.Days;
+import oncall.domain.day.DayOfWeek;
+import oncall.domain.day.Month;
+import oncall.domain.day.SpecialHoliday;
 
 public record ScheduleResponse(
     int month,
@@ -13,22 +15,27 @@ public record ScheduleResponse(
 
     public static ScheduleResponse from(Schedule schedule) {
         return new ScheduleResponse(
-            schedule.getMonth(),
-            schedule.getDayOfWeek(),
+            schedule.getMonth().get(),
+            schedule.getDayOfWeek().name(),
             schedule.getDays().stream()
-                .map(InnerDays::from)
+                .map(innerDays -> InnerDays.from(schedule.getMonth(), innerDays))
                 .toList()
         );
     }
 
     public record InnerDays(
         int day,
-        Days dayOfWeek,
+        DayOfWeek dayOfWeek,
+        boolean isSpecialHoliday,
         String worker
     ) {
 
-        private static InnerDays from(Schedule.InnerDays innerDays) {
-            return new InnerDays(innerDays.day(), innerDays.dayOfWeek(), innerDays.worker().getName());
+        private static InnerDays from(Month month, Schedule.InnerDays innerDays) {
+            return new InnerDays(
+                innerDays.day(),
+                innerDays.dayOfWeek(),
+                SpecialHoliday.isHoliday(month, innerDays.day()),
+                innerDays.worker().getName());
         }
     }
 }

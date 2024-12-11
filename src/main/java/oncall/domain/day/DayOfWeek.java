@@ -4,7 +4,7 @@ import static oncall.exception.ExceptionMessage.INVALID_DAY_OF_WEEK;
 
 import java.util.Arrays;
 
-public enum Days {
+public enum DayOfWeek {
     일,
     월,
     화,
@@ -14,14 +14,14 @@ public enum Days {
     토,
     ;
 
-    public static Days from(String dayOfTheWeek) {
+    public static DayOfWeek from(String dayOfTheWeek) {
         return Arrays.stream(values())
             .filter(days -> days.name().equals(dayOfTheWeek))
             .findAny()
             .orElseThrow(() -> new IllegalArgumentException(INVALID_DAY_OF_WEEK.getMessage()));
     }
 
-    public Days next() {
+    public DayOfWeek next() {
         if (ordinal() == values().length - 1) {
             return values()[0];
         }

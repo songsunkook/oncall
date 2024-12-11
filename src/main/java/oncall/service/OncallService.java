@@ -1,6 +1,5 @@
 package oncall.service;
 
-import oncall.domain.company.Calendar;
 import oncall.domain.company.Company;
 import oncall.domain.day.StartDate;
 import oncall.dto.ScheduleRequest;
@@ -10,12 +9,10 @@ import oncall.dto.StartDateRequest;
 public class OncallService {
 
     private StartDate startDate;
-    private final Calendar calendar = new Calendar();
     private final Company company = new Company();
 
     public void setUp(StartDateRequest request) {
         startDate = new StartDate(request.month(), request.dayOfWeek());
-        calendar.setUp(company);
     }
 
     public void setWorkday(ScheduleRequest request) {
@@ -27,6 +24,6 @@ public class OncallService {
     }
 
     public ScheduleResponse result() {
-        return ScheduleResponse.from(calendar.scheduleWith(startDate.getMonth(), startDate.getDayOfWeek()));
+        return ScheduleResponse.from(company.getSchedule(startDate));
     }
 }

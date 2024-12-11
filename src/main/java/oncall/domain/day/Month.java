@@ -28,4 +28,8 @@ public enum Month {
     public static Month from(int month) {
         return values()[month - 1];
     }
+
+    public int get() {
+        return ordinal() + 1;
+    }
 }

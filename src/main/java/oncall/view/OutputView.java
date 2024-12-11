@@ -2,7 +2,6 @@ package oncall.view;
 
 import static oncall.view.OutputMessage.*;
 
-import oncall.domain.day.SpecialHoliday;
 import oncall.dto.ScheduleResponse;
 
 public class OutputView {
@@ -21,7 +20,7 @@ public class OutputView {
 
     public static void result(ScheduleResponse response) {
         response.days().forEach(innerDays -> {
-                if (SpecialHoliday.isHoliday(response.month(), innerDays.day())) {
+                if (innerDays.isSpecialHoliday()) {
                     System.out.printf(RESULT_SPECIAL_HOLIDAY.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek()),
                         innerDays.worker());
                     return;

@@ -6,13 +6,13 @@ import static oncall.exception.ExceptionMessage.INVALID_MONTH;
 
 public class StartDate {
 
-    private final int month;
-    private final Days dayOfWeek;
+    private final Month month;
+    private final DayOfWeek dayOfWeek;
 
     public StartDate(int month, String dayOfWeek) {
         validateMonth(month);
-        this.month = month;
-        this.dayOfWeek = Days.from(dayOfWeek);
+        this.month = Month.from(month);
+        this.dayOfWeek = DayOfWeek.from(dayOfWeek);
     }
 
     private void validateMonth(int month) {
@@ -21,11 +21,11 @@ public class StartDate {
         }
     }
 
-    public int getMonth() {
+    public Month getMonth() {
         return month;
     }
 
-    public String getDayOfWeek() {
-        return dayOfWeek.name();
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
     }
 }

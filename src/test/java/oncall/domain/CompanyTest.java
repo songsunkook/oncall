@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import oncall.domain.company.Calendar;
 import oncall.domain.company.Company;
 import oncall.domain.company.Schedule;
+import oncall.domain.day.StartDate;
 
 class CompanyTest {
 
@@ -24,9 +24,8 @@ class CompanyTest {
         Company company = new Company();
         company.assignWeekday(List.of("준팍", "도밥", "고니", "수아", "루루"));
         company.assignHoliday(List.of("준팍", "고니", "도밥", "수아", "루루"));
-        Calendar calendar = new Calendar();
-        calendar.setUp(company);
-        Schedule schedule = calendar.scheduleWith(1, "월");
+        StartDate startDate = new StartDate(1, "월");
+        Schedule schedule = company.getSchedule(startDate);
         assertThat(schedule.getWorker(1).getName()).isEqualTo("준팍");
         assertThat(schedule.getWorker(2).getName()).isEqualTo("도밥");
         assertThat(schedule.getWorker(3).getName()).isEqualTo("준팍");
