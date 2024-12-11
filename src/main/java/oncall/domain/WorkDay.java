@@ -1,9 +1,15 @@
 package oncall.domain;
 
+import static oncall.constant.OncallConstant.MAXIMUM_WORKER_COUNT;
+import static oncall.constant.OncallConstant.MINIMUM_WORKER_COUNT;
+import static oncall.exception.ExceptionMessage.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorkDay {
+
+    public static final int MAXIMUM_NAME_LENGTH = 5;
 
     private int cursor = 0;
     private String specialNextWorker = null;
@@ -16,17 +22,17 @@ public class WorkDay {
     }
 
     private void validateNumberOfPeople(List<String> workers) {
-        if (workers.size() > 35) {
-            throw new IllegalArgumentException("[ERROR] 근무자 수는 최대 35명이어야 합니다.");
+        if (workers.size() > MAXIMUM_WORKER_COUNT) {
+            throw new IllegalArgumentException(WORKER_OVERFLOW.getMessage());
         }
-        if (workers.size() < 5) {
-            throw new IllegalArgumentException("[ERROR] 근무자 수는 최소 5명 이상이어야 합니다.");
+        if (workers.size() < MINIMUM_WORKER_COUNT) {
+            throw new IllegalArgumentException(WORKER_UNDERFLOW.getMessage());
         }
     }
 
     private void validateNickname(List<String> workers) {
-        if (workers.stream().anyMatch(name -> name.length() > 5)) {
-            throw new IllegalArgumentException("[ERROR] 근무자 닉네임은 최대 5글자여야 합니다.");
+        if (workers.stream().anyMatch(name -> name.length() > MAXIMUM_NAME_LENGTH)) {
+            throw new IllegalArgumentException(WORKER_NAME_LENGTH_OVERFLOW.getMessage(MAXIMUM_NAME_LENGTH));
         }
     }
 

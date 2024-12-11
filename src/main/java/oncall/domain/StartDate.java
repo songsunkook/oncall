@@ -1,5 +1,9 @@
 package oncall.domain;
 
+import static oncall.constant.OncallConstant.MAXIMUM_MONTH;
+import static oncall.constant.OncallConstant.MINIMUM_MONTH;
+import static oncall.exception.ExceptionMessage.INVALID_MONTH;
+
 public class StartDate {
 
     private final int month;
@@ -12,8 +16,8 @@ public class StartDate {
     }
 
     private void validateMonth(int month) {
-        if (month < 1 || month > 12) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 월(month)입니다.");
+        if (month < MINIMUM_MONTH || month > MAXIMUM_MONTH) {
+            throw new IllegalArgumentException(INVALID_MONTH.getMessage());
         }
     }
 

@@ -1,5 +1,7 @@
 package oncall.dto;
 
+import static oncall.exception.ExceptionMessage.INVALID_START_DATE_INPUT;
+
 public record StartDateRequest(
    int month,
    String dayOfWeek
@@ -9,10 +11,8 @@ public record StartDateRequest(
         try {
             String[] split = input.split(",");
             return new StartDateRequest(Integer.parseInt(split[0]), split[1]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new IllegalArgumentException("[ERROR]");
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] ");
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_START_DATE_INPUT.getMessage());
         }
     }
 

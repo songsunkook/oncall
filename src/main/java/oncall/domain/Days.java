@@ -1,5 +1,7 @@
 package oncall.domain;
 
+import static oncall.exception.ExceptionMessage.INVALID_DAY_OF_WEEK;
+
 import java.util.Arrays;
 
 public enum Days {
@@ -16,7 +18,7 @@ public enum Days {
         return Arrays.stream(values())
             .filter(days -> days.name().equals(dayOfTheWeek))
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 올바르지 않은 요일입니다."));
+            .orElseThrow(() -> new IllegalArgumentException(INVALID_DAY_OF_WEEK.getMessage()));
     }
 
     public Days next() {
