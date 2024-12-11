@@ -6,34 +6,47 @@ import oncall.dto.ScheduleResponse;
 
 public class OutputView {
 
-    public static void inputStartDate() {
-        System.out.print(INPUT_START_DATE.getMessage());
+    private StringBuilder buffer = new StringBuilder();
+
+    public void inputStartDate() {
+        print(INPUT_START_DATE.getMessage());
+        flush();
     }
 
-    public static void inputWorkday() {
-        System.out.print(INPUT_WORKDAY.getMessage());
+    public void inputWorkday() {
+        print(INPUT_WORKDAY.getMessage());
+        flush();
     }
 
-    public static void inputHoliday() {
-        System.out.print(INPUT_HOLIDAY.getMessage());
+    public void inputHoliday() {
+        print(INPUT_HOLIDAY.getMessage());
+        flush();
     }
 
-    public static void result(ScheduleResponse response) {
+    public void result(ScheduleResponse response) {
         response.days().forEach(innerDays -> {
                 if (innerDays.isSpecialHoliday()) {
-                    System.out.print(RESULT_SPECIAL_HOLIDAY.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek(),
+                    print(RESULT_SPECIAL_HOLIDAY.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek(),
                         innerDays.worker()));
                     return;
                 }
-                System.out.print(RESULT.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek(), innerDays.worker()));
+                print(RESULT.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek(), innerDays.worker()));
             }
         );
+        flush();
     }
 
-    public static void exception(Exception e) {
-        System.out.println(e.getMessage());
+    public void exception(Exception e) {
+        print(e.getMessage());
+        flush();
     }
 
-    private OutputView() {
+    private void print(String content) {
+        buffer.append(content);
+    }
+
+    private void flush() {
+        System.out.print(buffer);
+        buffer = new StringBuilder();
     }
 }

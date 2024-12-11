@@ -7,6 +7,7 @@ import oncall.view.OutputView;
 public class OncallController {
 
     private final OncallService oncallService = new OncallService();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
         process(this::inputMonthAndDays);
@@ -15,26 +16,26 @@ public class OncallController {
     }
 
     private void inputMonthAndDays() {
-        OutputView.inputStartDate();
+        outputView.inputStartDate();
         oncallService.setUp(InputView.startDate());
     }
 
     private void inputSchedule() {
-        OutputView.inputWorkday();
+        outputView.inputWorkday();
         oncallService.setWorkday(InputView.workday());
-        OutputView.inputHoliday();
+        outputView.inputHoliday();
         oncallService.setHoliday(InputView.holiday());
     }
 
     private void result() {
-        OutputView.result(oncallService.result());
+        outputView.result(oncallService.result());
     }
 
     private void process(Runnable action) {
         try {
             action.run();
         } catch (IllegalArgumentException e) {
-            OutputView.exception(e);
+            outputView.exception(e);
             process(action);
         }
     }
