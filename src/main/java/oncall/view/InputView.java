@@ -17,4 +17,7 @@ public class InputView {
     public static ScheduleRequest holiday() {
         return ScheduleRequest.from(Console.readLine());
     }
+
+    private InputView() {
+    }
 }
