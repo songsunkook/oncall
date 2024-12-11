@@ -8,8 +8,10 @@ public record ScheduleRequest(
     List<String> workers
 ) {
 
+    public static final String DELIMITER = ",";
+
     public static ScheduleRequest from(String input) {
-        List<String> workers = List.of(input.split(","));
+        List<String> workers = List.of(input.split(DELIMITER));
         validateDuplicateWorker(workers);
         return new ScheduleRequest(workers);
     }
