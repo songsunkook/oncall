@@ -16,16 +16,16 @@ public class Calendar {
         return calculateSchedule(month, dayOfTheWeek, _31days.contains(month) ? 31 : 30);
     }
 
-    private Schedule calculateSchedule(int month, String dayOfTheWeek, int lastDay) {
-        Schedule schedule = new Schedule(month);
-        Days days = Days.from(dayOfTheWeek);
+    private Schedule calculateSchedule(int month, String dayOfTheWeekParam, int lastDay) {
+        Schedule schedule = new Schedule(month, dayOfTheWeekParam);
+        Days dayOfWeek = Days.from(dayOfTheWeekParam);
 
         String beforeWorker = null;
         for (int i = 1; i <= lastDay; i++) {
-            String result = company.nextWorker(month, i, days, beforeWorker);
-            schedule.add(i, result);
+            String result = company.nextWorker(month, i, dayOfWeek, beforeWorker);
+            schedule.add(i, dayOfWeek, result);
             beforeWorker = result;
-            days = days.next();
+            dayOfWeek = dayOfWeek.next();
         }
 
         return schedule;

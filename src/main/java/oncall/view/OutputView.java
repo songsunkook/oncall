@@ -1,5 +1,8 @@
 package oncall.view;
 
+import oncall.Schedule;
+import oncall.SpecialHoliday;
+
 public class OutputView {
 
     public static void inputMonthAndDays() {
@@ -14,17 +17,18 @@ public class OutputView {
         System.out.print("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
     }
 
-    public static void result(Object o) {
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
-        System.out.println("5월 1일 월 준팍");
+    public static void result(Schedule schedule) {
+        String format = "%d월 %d일 %s %s%n";
+        String specialHolidayFormat = "%d월 %d일 %s(휴일) %s%n";
+        schedule.getDays().forEach(innerDays -> {
+                if (SpecialHoliday.isHoliday(schedule.getMonth(), innerDays.day())) {
+                    System.out.printf(specialHolidayFormat, schedule.getMonth(), innerDays.day(), innerDays.dayOfWeek(),
+                        innerDays.worker());
+                    return;
+                }
+                System.out.printf(format, schedule.getMonth(), innerDays.day(), innerDays.dayOfWeek(),
+                    innerDays.worker());
+            }
+        );
     }
 }
