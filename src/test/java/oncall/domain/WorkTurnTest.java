@@ -6,14 +6,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import oncall.domain.work.WorkDay;
+import oncall.domain.work.WorkTurn;
 import oncall.dto.ScheduleRequest;
 
-class WorkDayTest {
+class WorkTurnTest {
 
     @Test
     void 순번에_따라_비상_근무일을_배정한다() {
-        WorkDay workDay = new WorkDay(List.of("준팍", "도밥", "고니", "수아", "루루", "글로", "솔로스타", "우코", "슬링키", "참새", "도리"));
+        WorkTurn workTurn = new WorkTurn(List.of("준팍", "도밥", "고니", "수아", "루루", "글로", "솔로스타", "우코", "슬링키", "참새", "도리"));
     }
 
     @Test

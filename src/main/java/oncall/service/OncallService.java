@@ -1,8 +1,8 @@
 package oncall.service;
 
-import oncall.domain.StartDate;
 import oncall.domain.company.Calendar;
 import oncall.domain.company.Company;
+import oncall.domain.day.StartDate;
 import oncall.dto.ScheduleRequest;
 import oncall.dto.ScheduleResponse;
 import oncall.dto.StartDateRequest;

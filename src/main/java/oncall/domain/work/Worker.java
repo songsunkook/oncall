@@ -1,11 +1,12 @@
 package oncall.domain.work;
 
-import static oncall.domain.work.WorkDay.MAXIMUM_NAME_LENGTH;
 import static oncall.exception.ExceptionMessage.WORKER_NAME_LENGTH_OVERFLOW;
 
 import java.util.Objects;
 
 public class Worker {
+
+    public static final int MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
 

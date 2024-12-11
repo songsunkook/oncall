@@ -2,13 +2,11 @@ package oncall.domain.work;
 
 import java.util.List;
 
-public class WorkDay {
-
-    public static final int MAXIMUM_NAME_LENGTH = 5;
+public class WorkTurn {
 
     private Workers workers;
 
-    public WorkDay(List<String> workers) {
+    public WorkTurn(List<String> workers) {
         this.workers = new Workers(
             workers.stream()
                 .map(Worker::new)
