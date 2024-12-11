@@ -1,9 +1,9 @@
 package oncall.service;
 
-import oncall.Calendar;
-import oncall.Company;
-import oncall.Schedule;
-import oncall.StartDate;
+import oncall.domain.Calendar;
+import oncall.domain.Company;
+import oncall.domain.Schedule;
+import oncall.domain.StartDate;
 
 public class OncallService {
 

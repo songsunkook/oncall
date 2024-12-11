@@ -1,7 +1,7 @@
 package oncall.view;
 
-import oncall.Schedule;
-import oncall.SpecialHoliday;
+import oncall.domain.Schedule;
+import oncall.domain.SpecialHoliday;
 
 public class OutputView {
 

@@ -1,4 +1,4 @@
-package oncall;
+package oncall.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

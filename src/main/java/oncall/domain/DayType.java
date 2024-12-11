@@ -1,4 +1,4 @@
-package oncall;
+package oncall.domain;
 
 public enum DayType {
     WORKDAY,
