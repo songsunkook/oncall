@@ -2,6 +2,8 @@ package oncall.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class CompanyTest {
@@ -9,15 +11,15 @@ class CompanyTest {
     @Test
     void 회사에서는_평일과_휴일_순번을_다르게_운영한다() {
         Company company = new Company();
-        company.assignWeekday("준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리");
-        company.assignHoliday("수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니");
+        company.assignWeekday(List.of("준팍", "도밥", "고니", "수아", "루루", "글로", "솔로스타", "우코", "슬링키", "참새", "도리"));
+        company.assignHoliday(List.of("수아", "루루", "글로", "솔로스타", "우코", "슬링키", "참새", "도리", "준팍", "도밥", "고니"));
     }
 
     @Test
     void 연속_2일_근무하는_경우_다음_근무자와_순서를_바꾼다() {
         Company company = new Company();
-        company.assignWeekday("준팍,도밥,고니,수아,루루");
-        company.assignHoliday("준팍,고니,도밥,수아,루루");
+        company.assignWeekday(List.of("준팍", "도밥", "고니", "수아", "루루"));
+        company.assignHoliday(List.of("준팍", "고니", "도밥", "수아", "루루"));
         Calendar calendar = new Calendar();
         calendar.setUp(company);
         Schedule schedule = calendar.scheduleWith(1, "월");

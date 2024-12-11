@@ -2,8 +2,10 @@ package oncall.service;
 
 import oncall.domain.Calendar;
 import oncall.domain.Company;
-import oncall.domain.Schedule;
 import oncall.domain.StartDate;
+import oncall.dto.ScheduleRequest;
+import oncall.dto.ScheduleResponse;
+import oncall.dto.StartDateRequest;
 
 public class OncallService {
 
@@ -11,21 +13,20 @@ public class OncallService {
     private final Calendar calendar = new Calendar();
     private final Company company = new Company();
 
-    public void setUp(String input) {
-        String[] split = input.split(",");
-        startDate = new StartDate(Integer.parseInt(split[0]), split[1]);
+    public void setUp(StartDateRequest request) {
+        startDate = new StartDate(request.month(), request.dayOfWeek());
         calendar.setUp(company);
     }
 
-    public void setWorkday(String workday) {
-        company.assignWeekday(workday);
+    public void setWorkday(ScheduleRequest request) {
+        company.assignWeekday(request.workers());
     }
 
-    public void setHoliday(String holiday) {
-        company.assignHoliday(holiday);
+    public void setHoliday(ScheduleRequest request) {
+        company.assignHoliday(request.workers());
     }
 
-    public Schedule result() {
-        return calendar.scheduleWith(startDate.getMonth(), startDate.getDayOfWeek());
+    public ScheduleResponse result() {
+        return ScheduleResponse.from(calendar.scheduleWith(startDate.getMonth(), startDate.getDayOfWeek()));
     }
 }

@@ -9,16 +9,8 @@ public class WorkDay {
     private int cursor = 0;
     private String specialNextWorker = null;
 
-    public void assign(String workers) {
-        List<String> split = List.of(workers.split(","));
-        validateDuplicateWorker(split);
-        this.workers.addAll(split);
-    }
-
-    private void validateDuplicateWorker(List<String> workers) {
-        if (workers.size() != workers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] ");
-        }
+    public void assign(List<String> workers) {
+        this.workers.addAll(workers);
     }
 
     public String peek() {

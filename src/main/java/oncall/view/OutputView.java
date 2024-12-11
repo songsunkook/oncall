@@ -1,7 +1,7 @@
 package oncall.view;
 
-import oncall.domain.Schedule;
 import oncall.domain.SpecialHoliday;
+import oncall.dto.ScheduleResponse;
 
 public class OutputView {
 
@@ -17,16 +17,16 @@ public class OutputView {
         System.out.print("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
     }
 
-    public static void result(Schedule schedule) {
+    public static void result(ScheduleResponse response) {
         String format = "%d월 %d일 %s %s%n";
         String specialHolidayFormat = "%d월 %d일 %s(휴일) %s%n";
-        schedule.getDays().forEach(innerDays -> {
-                if (SpecialHoliday.isHoliday(schedule.getMonth(), innerDays.day())) {
-                    System.out.printf(specialHolidayFormat, schedule.getMonth(), innerDays.day(), innerDays.dayOfWeek(),
+        response.days().forEach(innerDays -> {
+                if (SpecialHoliday.isHoliday(response.month(), innerDays.day())) {
+                    System.out.printf(specialHolidayFormat, response.month(), innerDays.day(), innerDays.dayOfWeek(),
                         innerDays.worker());
                     return;
                 }
-                System.out.printf(format, schedule.getMonth(), innerDays.day(), innerDays.dayOfWeek(),
+                System.out.printf(format, response.month(), innerDays.day(), innerDays.dayOfWeek(),
                     innerDays.worker());
             }
         );

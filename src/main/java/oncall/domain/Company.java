@@ -1,15 +1,17 @@
 package oncall.domain;
 
+import java.util.List;
+
 public class Company {
 
     private final WorkDay weekday = new WorkDay();
     private final WorkDay holiday = new WorkDay();
 
-    public void assignWeekday(String workers) {
+    public void assignWeekday(List<String> workers) {
         weekday.assign(workers);
     }
 
-    public void assignHoliday(String workers) {
+    public void assignHoliday(List<String> workers) {
         holiday.assign(workers);
     }
 
