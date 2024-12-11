@@ -21,12 +21,11 @@ public class OutputView {
     public static void result(ScheduleResponse response) {
         response.days().forEach(innerDays -> {
                 if (innerDays.isSpecialHoliday()) {
-                    System.out.printf(RESULT_SPECIAL_HOLIDAY.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek()),
-                        innerDays.worker());
+                    System.out.print(RESULT_SPECIAL_HOLIDAY.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek(),
+                        innerDays.worker()));
                     return;
                 }
-                System.out.printf(RESULT.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek(),
-                    innerDays.worker()));
+                System.out.print(RESULT.getMessage(response.month(), innerDays.day(), innerDays.dayOfWeek(), innerDays.worker()));
             }
         );
     }

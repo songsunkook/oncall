@@ -15,7 +15,7 @@ public enum ExceptionMessage {
     ;
 
     private static final String PREFIX = "[ERROR] ";
-    private static final String POSTFIX = " 다시 입력해주세요.%n";
+    private static final String POSTFIX = " 다시 입력해주세요.";
 
     private final String message;
 
